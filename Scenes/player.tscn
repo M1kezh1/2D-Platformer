@@ -1,11 +1,84 @@
-[gd_scene load_steps=3 format=3 uid="uid://dv0g1jn3n7ini"]
+[gd_scene load_steps=10 format=3 uid="uid://dv0g1jn3n7ini"]
 
+[ext_resource type="Script" uid="uid://dm4f85m18rkkw" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dyq7dh6jlegru" path="res://Sprites/Characters/character_0000.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://boym8rwk8fqpe" path="res://Sprites/Characters/character_0001.png" id="3_6t5aa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 height = 26.0
 
+[sub_resource type="Animation" id="Animation_vgqql"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_v0iea")]
+}
+
+[sub_resource type="Animation" id="Animation_fkybt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_v0iea")]
+}
+
+[sub_resource type="Animation" id="Animation_x3wgy"]
+resource_name = "move"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_6t5aa"), ExtResource("1_v0iea")]
+}
+
+[sub_resource type="Animation" id="Animation_3smsa"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_6t5aa")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8erm5"]
+_data = {
+&"RESET": SubResource("Animation_fkybt"),
+&"idle": SubResource("Animation_vgqql"),
+&"jump": SubResource("Animation_3smsa"),
+&"move": SubResource("Animation_x3wgy")
+}
+
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_cvnsp")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_v0iea")
@@ -16,4 +89,12 @@ position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_cvnsp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -26)
 zoom = Vector2(3, 3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8erm5")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
