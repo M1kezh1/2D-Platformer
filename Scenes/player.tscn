@@ -1,11 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv0g1jn3n7ini"]
+[gd_scene load_steps=14 format=3 uid="uid://dv0g1jn3n7ini"]
 
 [ext_resource type="Script" uid="uid://dm4f85m18rkkw" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dyq7dh6jlegru" path="res://Sprites/Characters/character_0000.png" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://boym8rwk8fqpe" path="res://Sprites/Characters/character_0001.png" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://cva4i4q883bsl" path="res://Scripts/camera_shake.gd" id="3_x3wgy"]
+[ext_resource type="Script" uid="uid://hfptd803ygap" path="res://Scripts/player_ui.gd" id="4_fkybt"]
+[ext_resource type="Texture2D" uid="uid://miq1be7j6s70" path="res://Sprites/Objects/tile_0044.png" id="4_vgqql"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 height = 26.0
+
+[sub_resource type="Animation" id="Animation_fkybt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_v0iea")]
+}
 
 [sub_resource type="Animation" id="Animation_vgqql"]
 resource_name = "idle"
@@ -22,8 +40,8 @@ tracks/0/keys = {
 "values": [ExtResource("1_v0iea")]
 }
 
-[sub_resource type="Animation" id="Animation_fkybt"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_3smsa"]
+resource_name = "jump"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,7 +52,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_v0iea")]
+"values": [ExtResource("3_6t5aa")]
 }
 
 [sub_resource type="Animation" id="Animation_x3wgy"]
@@ -54,21 +72,6 @@ tracks/0/keys = {
 "values": [ExtResource("3_6t5aa"), ExtResource("1_v0iea")]
 }
 
-[sub_resource type="Animation" id="Animation_3smsa"]
-resource_name = "jump"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_6t5aa")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8erm5"]
 _data = {
 &"RESET": SubResource("Animation_fkybt"),
@@ -77,7 +80,11 @@ _data = {
 &"move": SubResource("Animation_x3wgy")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_vgqql"]
+font_size = 41
+shadow_color = Color(0, 0, 0, 0.67058825)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_cvnsp")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -91,6 +98,7 @@ shape = SubResource("CapsuleShape2D_cvnsp")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -26)
 zoom = Vector2(3, 3)
+script = ExtResource("3_x3wgy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -98,3 +106,34 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_fkybt")
+
+[node name="HealthContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 93.0
+offset_right = 408.0
+offset_bottom = 84.0
+
+[node name="Heart1" type="TextureRect" parent="CanvasLayer/HealthContainer"]
+layout_mode = 2
+texture = ExtResource("4_vgqql")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="CanvasLayer/HealthContainer"]
+layout_mode = 2
+texture = ExtResource("4_vgqql")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="CanvasLayer/HealthContainer"]
+layout_mode = 2
+texture = ExtResource("4_vgqql")
+expand_mode = 2
+
+[node name="ScoreText" type="Label" parent="CanvasLayer"]
+offset_left = 101.0
+offset_top = 53.0
+offset_right = 288.0
+offset_bottom = 106.0
+text = "Score: 500"
+label_settings = SubResource("LabelSettings_vgqql")
