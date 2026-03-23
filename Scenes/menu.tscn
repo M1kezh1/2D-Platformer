@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw7lp67vp5x13"]
+
+[ext_resource type="Texture2D" uid="uid://daddmg1hkc27d" path="res://Sprites/Backgrounds/backgroundForest.png" id="1_1rerr"]
+[ext_resource type="Script" uid="uid://c40cl8hikt7fr" path="res://Scripts/menu.gd" id="1_xhh6f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xhh6f"]
+font_size = 48
+font_color = Color(0.42570198, 0.49997652, 0.2786606, 1)
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_xhh6f")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1153.0
+offset_bottom = 1153.0
+texture = ExtResource("1_1rerr")
+expand_mode = 4
+
+[node name="Title" type="Label" parent="."]
+offset_left = 248.0
+offset_top = 96.0
+offset_right = 919.0
+offset_bottom = 183.0
+text = "Mike's 2D Platformer"
+label_settings = SubResource("LabelSettings_xhh6f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 478.0
+offset_top = 250.0
+offset_right = 669.0
+offset_bottom = 337.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 479.0
+offset_top = 367.0
+offset_right = 668.0
+offset_bottom = 454.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

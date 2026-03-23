@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=4 uid="uid://c8ta1wr1gs2vo"]
+
+[ext_resource type="Script" uid="uid://b8qko3r2kqddy" path="res://Scripts/background_parallax.gd" id="1_055b2"]
+[ext_resource type="Texture2D" uid="uid://bpkkj4i0lidm8" path="res://Sprites/Backgrounds/backgroundDesert.png" id="2_055b2"]
+[ext_resource type="TileSet" uid="uid://bphy4st8ym4ie" path="res://Sprites/Tiles/new_tile_set.tres" id="3_uhnj4"]
+[ext_resource type="PackedScene" uid="uid://dv0g1jn3n7ini" path="res://Scenes/player.tscn" id="4_42uki"]
+[ext_resource type="PackedScene" uid="uid://v4y3k3nglc6a" path="res://Scenes/end_flag.tscn" id="5_t7v2y"]
+[ext_resource type="PackedScene" uid="uid://bj2wjre1h6or3" path="res://Scenes/coin.tscn" id="6_ait6c"]
+[ext_resource type="PackedScene" uid="uid://u2b4k6a5qm08" path="res://Scenes/enemy.tscn" id="7_vcilj"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("1_055b2")
+
+[node name="BackgroundSprite" type="Sprite2D" parent="Background"]
+modulate = Color(1, 0.7882353, 0.4509804, 1)
+position = Vector2(0, -73)
+scale = Vector2(0.5, 0.82277036)
+texture = ExtResource("2_055b2")
+
+[node name="BackgroundSprite2" type="Sprite2D" parent="Background"]
+modulate = Color(1, 0.7882353, 0.4509804, 1)
+position = Vector2(554, -73.5)
+scale = Vector2(0.58203125, 0.82116336)
+texture = ExtResource("2_055b2")
+
+[node name="BackgroundSprite3" type="Sprite2D" parent="Background"]
+modulate = Color(1, 0.7882353, 0.4509804, 1)
+position = Vector2(-485, -73)
+scale = Vector2(0.44726563, 0.82277036)
+texture = ExtResource("2_055b2")
+
+[node name="BackgroundSprite4" type="Sprite2D" parent="Background"]
+modulate = Color(1, 0.7882353, 0.4509804, 1)
+position = Vector2(1049.7773, -73.1232)
+scale = Vector2(0.38910672, 0.820553)
+texture = ExtResource("2_055b2")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+/wAAAAABAAIAAAD//wAAAAACAAIAAAAAAAAAAAACAAIAAAABAAAAAAADAAIAAAD+////AAAHAAYAAAD+/wEAAAANAAMAAAD//wEAAAANAAMAAAAAAAEAAAANAAMAAAABAAEAAAANAAMAAAABAAIAAAANAAMAAAAAAAIAAAANAAMAAAD//wIAAAANAAMAAAD+/wIAAAANAAMAAAACAAEAAAANAAMAAAADAAEAAAANAAMAAAAEAAEAAAANAAMAAAAFAAEAAAANAAMAAAAGAAEAAAANAAMAAAAHAAEAAAANAAMAAAAIAAEAAAANAAMAAAAJAAEAAAANAAMAAAAKAAEAAAANAAMAAAALAAEAAAANAAMAAAAMAAEAAAANAAMAAAANAAEAAAANAAMAAAAOAAEAAAANAAMAAAAPAAEAAAANAAMAAAAQAAEAAAANAAMAAAARAAEAAAANAAMAAAASAAEAAAANAAMAAAATAAEAAAANAAMAAAAUAAEAAAANAAMAAAAVAAEAAAANAAMAAAAWAAEAAAANAAMAAAAXAAEAAAANAAMAAAAYAAEAAAANAAMAAAAZAAEAAAANAAMAAAAaAAEAAAANAAMAAAAbAAEAAAANAAMAAAAcAAEAAAANAAMAAAAdAAEAAAANAAMAAAAeAAEAAAANAAMAAAAfAAEAAAANAAMAAAAgAAEAAAANAAMAAAAhAAEAAAANAAMAAAAiAAEAAAANAAMAAAAjAAEAAAANAAMAAAAkAAEAAAANAAMAAAAlAAEAAAANAAMAAAACAAIAAAANAAMAAAADAAIAAAANAAMAAAAEAAIAAAANAAMAAAAFAAIAAAANAAMAAAAGAAIAAAANAAMAAAAHAAIAAAANAAMAAAAIAAIAAAANAAMAAAAJAAIAAAANAAMAAAAKAAIAAAANAAMAAAALAAIAAAANAAMAAAAMAAIAAAANAAMAAAANAAIAAAANAAMAAAAOAAIAAAANAAMAAAAPAAIAAAANAAMAAAAQAAIAAAANAAMAAAARAAIAAAANAAMAAAASAAIAAAANAAMAAAATAAIAAAANAAMAAAAUAAIAAAANAAMAAAAVAAIAAAANAAMAAAAWAAIAAAANAAMAAAAXAAIAAAANAAMAAAAYAAIAAAANAAMAAAAZAAIAAAANAAMAAAAaAAIAAAANAAMAAAAbAAIAAAANAAMAAAAcAAIAAAANAAMAAAAdAAIAAAANAAMAAAAeAAIAAAANAAMAAAAfAAIAAAANAAMAAAAgAAIAAAANAAMAAAAhAAIAAAANAAMAAAAiAAIAAAANAAMAAAAjAAIAAAANAAMAAAAkAAIAAAANAAMAAAAlAAIAAAANAAMAAAAGAP//AAAAAAIAAAAKAP7/AAABAAMAAAALAP3/AAABAAMAAAAMAP3/AAACAAMAAAANAP3/AAADAAMAAAAOAP7/AAADAAMAAAALAP7/AAACAAYAAAAMAP7/AAACAAYAAAANAP7/AAACAAYAAAALAP//AAACAAYAAAAKAP//AAABAAYAAAAMAP//AAACAAYAAAANAP//AAACAAYAAAAOAP//AAADAAYAAAAKAAAAAAABAAYAAAALAAAAAAACAAYAAAAMAAAAAAACAAYAAAANAAAAAAACAAYAAAAOAAAAAAADAAYAAAANAPz/AAAFAAYAAAAMAPz/AAAEAAYAAAAOAP3/AAAIAAQAAFASAAAAAAAAAAMAAAAXAAAAAAAAAAMAAAAcAP//AAAAAAMAAAAcAAAAAAACAAYAAAAfAAAAAAACAAYAAAAgAAAAAAACAAYAAAAgAP//AAACAAYAAAAfAP//AAACAAYAAAAfAP7/AAABAAMAAAAgAP7/AAADAAMAAAAmAP//AAADAAMAAAAjAP//AAABAAMAAAAkAP//AAACAAMAAAAlAP//AAACAAMAAAAjAAAAAAABAAYAAAAmAAAAAAADAAYAAAAkAAAAAAACAAYAAAAlAAAAAAACAAYAAAAmAAEAAAANAAMAAAAmAAIAAAANAAMAAAAnAAIAAAANAAMAAAAnAAEAAAANAAMAAAAoAAEAAAANAAMAAAApAAEAAAANAAMAAAAqAAEAAAANAAMAAAArAAEAAAANAAMAAAAsAAEAAAANAAMAAAAsAAIAAAANAAMAAAArAAIAAAANAAMAAAAqAAIAAAANAAMAAAApAAIAAAANAAMAAAAoAAIAAAANAAMAAAAtAAEAAAANAAMAAAAuAAEAAAANAAMAAAAuAAIAAAANAAMAAAAtAAIAAAANAAMAAAA=")
+tile_set = ExtResource("3_uhnj4")
+
+[node name="Player" parent="." instance=ExtResource("4_42uki")]
+position = Vector2(0, -1)
+
+[node name="EndFlag" parent="." instance=ExtResource("5_t7v2y")]
+position = Vector2(648, -11)
+scene_to_load = ExtResource("4_42uki")
+
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin3" parent="Coins" instance=ExtResource("6_ait6c")]
+position = Vector2(520, 3)
+
+[node name="Coin" parent="Coins" instance=ExtResource("6_ait6c")]
+position = Vector2(-2, 3)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("6_ait6c")]
+position = Vector2(258, -6)
+
+[node name="Enemys" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemys" instance=ExtResource("7_vcilj")]
+position = Vector2(14, -6)
+
+[node name="Enemy2" parent="Enemys" instance=ExtResource("7_vcilj")]
+position = Vector2(107, -6)
+
+[node name="Enemy3" parent="Enemys" instance=ExtResource("7_vcilj")]
+position = Vector2(315, -4)
+
+[node name="Enemy4" parent="Enemys" instance=ExtResource("7_vcilj")]
+position = Vector2(513, -6)
