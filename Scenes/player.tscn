@@ -111,9 +111,10 @@ libraries = {
 script = ExtResource("4_fkybt")
 
 [node name="HealthContainer" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = 93.0
-offset_right = 408.0
-offset_bottom = 84.0
+offset_left = 30.0
+offset_top = 27.0
+offset_right = 345.0
+offset_bottom = 111.0
 
 [node name="Heart1" type="TextureRect" parent="CanvasLayer/HealthContainer"]
 layout_mode = 2
@@ -131,9 +132,9 @@ texture = ExtResource("4_vgqql")
 expand_mode = 2
 
 [node name="ScoreText" type="Label" parent="CanvasLayer"]
-offset_left = 101.0
-offset_top = 53.0
-offset_right = 288.0
-offset_bottom = 106.0
+offset_left = 38.0
+offset_top = 80.0
+offset_right = 239.0
+offset_bottom = 137.0
 text = "Score: 500"
 label_settings = SubResource("LabelSettings_vgqql")
